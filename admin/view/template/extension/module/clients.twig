@@ -1,0 +1,59 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-right">
+        <a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <a href="{{ back }}" data-toggle="tooltip" title="{{ button_back }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if success %}
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{ success }}
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form method="post" enctype="multipart/form-data" class="form-horizontal">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                <td class="text-left">{{ column_name }}</td>
+                <td class="text-left">{{ column_website }}</td>
+                <td class="text-right">{{ column_action }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% if clients %}
+              {% for client in clients %}
+              <tr>
+                <td class="text-center"><input type="checkbox" name="selected[]" value="{{ client.client_id }}" /></td>
+                <td class="text-left">{{ client.name }}</td>
+                <td class="text-left">{{ client.website }}</td>
+                <td class="text-right">
+                  <a href="{{ client.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                  <a href="{{ client.delete }}" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger btn-xs" onclick="return confirm('{{ text_confirm }}');"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+              {% endfor %}
+              {% else %}
+              <tr>
+                <td class="text-center" colspan="4">{{ text_no_results }}</td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
