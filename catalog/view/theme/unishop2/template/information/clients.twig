@@ -1,0 +1,128 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% if not loop.last %}<span class="breadcrumb-separator">/</span>{% endif %}
+    {% endfor %}
+  </ul>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>{{ heading_title }}</h1>
+      <p class="lead">{{ description_title }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="clients-page">
+        <div class="clients-grid">
+          {% for client in clients %}
+          <div class="client-item">
+            {% if client.logo %}
+            <div class="client-logo">
+              <a href="{{ client.website }}" target="_blank" title="{{ client.name }}">
+                <img src="{{ client.logo }}" alt="{{ client.name }}" />
+              </a>
+            </div>
+            {% endif %}
+            <div class="client-content">
+              <h3 class="client-name">
+                <a href="{{ client.website }}" target="_blank">{{ client.name }}</a>
+              </h3>
+              {% if client.description %}
+              <p class="client-description">{{ client.description }}</p>
+              {% endif %}
+              <a href="{{ client.website }}" target="_blank" class="btn btn-primary">Посетить сайт</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+
+<style>
+.clients-page {
+  padding: 30px 0;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.client-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.client-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #0066cc;
+  transform: translateY(-2px);
+}
+
+.client-logo {
+  text-align: center;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.client-name {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.client-name a {
+  color: #333;
+  text-decoration: none;
+}
+
+.client-name a:hover {
+  color: #0066cc;
+}
+
+.client-description {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+  min-height: 60px;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0066cc;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0052a3;
+}
+</style>
