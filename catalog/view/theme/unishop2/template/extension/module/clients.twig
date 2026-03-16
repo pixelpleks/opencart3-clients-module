@@ -1,0 +1,84 @@
+<div class="clients-module">
+  <div class="clients-grid">
+    {% for client in clients %}
+    <div class="client-item">
+      {% if client.logo %}
+      <div class="client-logo">
+        <a href="{{ client.website }}" target="_blank" title="{{ client.name }}">
+          <img src="{{ client.logo }}" alt="{{ client.name }}" />
+        </a>
+      </div>
+      {% endif %}
+      <div class="client-content">
+        <h3 class="client-name">
+          <a href="{{ client.website }}" target="_blank">{{ client.name }}</a>
+        </h3>
+        {% if client.description %}
+        <p class="client-description">{{ client.description }}</p>
+        {% endif %}
+        <a href="{{ client.website }}" target="_blank" class="btn btn-sm btn-primary">Перейти на сайт</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.clients-module {
+  padding: 20px 0;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.client-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.client-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.client-logo {
+  text-align: center;
+  margin-bottom: 15px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.client-name {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.client-name a {
+  color: #333;
+  text-decoration: none;
+}
+
+.client-name a:hover {
+  color: #0066cc;
+}
+
+.client-description {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+  min-height: 50px;
+}
+</style>
